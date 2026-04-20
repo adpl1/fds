@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page 2</title>
+</head>
+<body>
+
+<h2>الاسم:</h2>
+<p id="result">...</p>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBNJBWUmEU9N7VCfwrZguNwe6uvSvo3Bc0",
+  authDomain: "muslim-app-b5d84.firebaseapp.com",
+  projectId: "muslim-app-b5d84",
+  storageBucket: "muslim-app-b5d84.firebasestorage.app",
+  messagingSenderId: "689424439088",
+  appId: "1:689424439088:web:8d98b6b1717db285c81af5",
+  measurementId: "G-8PN8NEMBCM"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const docRef = doc(db, "test", "user1");
+
+onSnapshot(docRef, (docSnap) => {
+  if (docSnap.exists()) {
+    document.getElementById("result").innerText = docSnap.data().name;
+  }
+});
+</script>
+
+</body>
+</html>
